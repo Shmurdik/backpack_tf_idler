@@ -2,6 +2,8 @@
 // @name         backpack_tf_idler
 // @namespace    http://tampermonkey.net/
 // @version      2024-01-20
+// @downloadURL  https://github.com/Shmurdik/backpack_tf_idler/raw/main/backpack_tf_idler.user.js
+// @updateURL	 https://github.com/Shmurdik/backpack_tf_idler/raw/main/backpack_tf_idler.user.js
 // @description  description
 // @author       Shmurdik
 // @match        https://idler.backpack.tf/
