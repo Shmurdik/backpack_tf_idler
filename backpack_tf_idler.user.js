@@ -1,13 +1,13 @@
 // ==UserScript==
 // @name         backpack_tf_idler
 // @namespace    https://github.com/Shmurdik
-// @version      2024-01-20
+// @version      2024-01-21
 // @downloadURL  https://github.com/Shmurdik/backpack_tf_idler/raw/main/backpack_tf_idler.user.js
 // @updateURL	 https://github.com/Shmurdik/backpack_tf_idler/raw/main/backpack_tf_idler.user.js
 // @description  description
 // @author       Shmurdik
 // @match        https://idler.backpack.tf/
-// @icon         data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
+// @icon         https://idler.backpack.tf/favicon.png
 // @grant        none
 // @require      https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js
 // ==/UserScript==
@@ -22,6 +22,8 @@
 //<div data-v-6a09b80d="" class="fight team-idle tab">Team</div>
 //<button data-v-20ff1bd9="" class="btn-forfeit">Back to Team Management</button>
 //<div data-v-0bd90c02="" class="btn-mission__title">Enter Match</div>
+
+    const AUTO_ENTER_MATCH = 0;
     const DEFAULT_PICK_ASSET = "warpGate";
 
     // Idle
@@ -32,6 +34,11 @@
 
     // Trade
     const MAX_PICK_STEAM = 203;
+    const MAX_PICK_SALESREP = 203;
+    const MAX_PICK_TRADINGPOST = 203;
+    const MAX_PICK_BAZAAR = 203;
+    const MAX_PICK_OUTLETSTORE = 203;
+    const MAX_PICK_STOCKEXCHANGE = 203;
 
     // Logistics
     const MAX_PICK_COURIER = 203;
@@ -50,11 +57,11 @@
     }
 
     function pickAsset(assetName, maxValue) {
-        if(jQuery("div.column-shop div." + assetName).parent().parent().parent().children(".item__owns").text() < maxValue) {jQuery("div.picker__item-list div." + assetName).click(); return true;}
+        if(jQuery("div.picker__item-list div." + assetName).length && jQuery("div.column-shop div." + assetName).parent().parent().parent().children(".item__owns").text() < maxValue) {jQuery("div.picker__item-list div." + assetName).click(); return true;}
         return false;
     }
 
-    //alert("test");
+
     setInterval(function(){
         if(jQuery("div.picker__card-list > div.card-XV.card").length) {
             jQuery("div.picker__card-list > div.card-XV.card").click();
@@ -95,6 +102,12 @@
                 else if(pickAsset("hovercraft", MAX_PICK_HOVERCRAFT)) {pickedupAsset = true;}
                 else if(pickAsset("mailTruck", MAX_PICK_MAILTRUCK)) {pickedupAsset = true;}
                 else if(pickAsset("courier", MAX_PICK_COURIER)) {pickedupAsset = true;}
+                else if(pickAsset("stockExchange", MAX_PICK_STOCKEXCHANGE)) {pickedupAsset = true;}
+                else if(pickAsset("outletStore", MAX_PICK_OUTLETSTORE)) {pickedupAsset = true;}
+                else if(pickAsset("bazaar", MAX_PICK_BAZAAR)) {pickedupAsset = true;}
+                else if(pickAsset("tradingPost", MAX_PICK_TRADINGPOST)) {pickedupAsset = true;}
+                else if(pickAsset("salesRep", MAX_PICK_SALESREP)) {pickedupAsset = true;}
+                else if(pickAsset("steam", MAX_PICK_STEAM)) {pickedupAsset = true;}
                 else if(pickAsset("laptop", MAX_PICK_LAPTOP)) {pickedupAsset = true;}
             }
 
@@ -104,21 +117,22 @@
             }
         }
 
+        // Buy Upgrades
         if(jQuery("div.column-shop div.upgrade.item").length) {
             jQuery("div.column-shop div.upgrade.item").click();
         }
 
-
+        // Get Tarot Cards and play TF match
         if(jQuery(".tarot.tarot-draw-ready.tab").length) {
             jQuery(".tarot.tarot-draw-ready.tab").click();
             sleep(1000);
             if(jQuery(".btn-draw-card").length && jQuery(".btn-draw-card").hasClass("disabled") == false) {
-            //alert(jQuery(".btn-draw-card").attr("disabled"));
-            //alert(jQuery(".btn-draw-card").hasClass("disabled"));
+                //alert(jQuery(".btn-draw-card").attr("disabled"));
+                //alert(jQuery(".btn-draw-card").hasClass("disabled"));
                 jQuery(".btn-draw-card").click();
             }
         }
-        else if(jQuery(".fight.team-idle.tab").length) {
+        else if(jQuery(".fight.team-idle.tab").length && AUTO_ENTER_MATCH) {
             jQuery(".fight.team-idle.tab").click();
             sleep(1000);
             if(jQuery("button.btn-forfeit").length && jQuery("button.btn-forfeit").text() == "Back to Team Management") {
