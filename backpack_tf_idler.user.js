@@ -23,7 +23,7 @@
 //<button data-v-20ff1bd9="" class="btn-forfeit">Back to Team Management</button>
 //<div data-v-0bd90c02="" class="btn-mission__title">Enter Match</div>
     const DEFAULT_PICK_ASSET = "warpGate";
-$.get();
+
     // Idle
     const MAX_PICK_LAPTOP = 203;
 
