@@ -8,7 +8,7 @@
 // @author       Shmurdik
 // @match        https://idler.backpack.tf/
 // @icon         https://idler.backpack.tf/favicon.png
-// @grant        none
+// @grant        GM_log
 // @require      https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js
 // ==/UserScript==
 /*global $, jQuery*/
@@ -147,7 +147,7 @@
 
         // Auto Buy Upgrades
         if(AUTO_BUY_UPGRADE) {
-            if(jQuery("div.column-shop div.upgrade.item").length) {
+            if(jQuery("div.column-shop div.upgrade.item").length && jQuery("div.column-shop div.upgrade.item").hasClass("disabled") == false) {
                 jQuery("div.column-shop div.upgrade.item").click();
             }
         }
