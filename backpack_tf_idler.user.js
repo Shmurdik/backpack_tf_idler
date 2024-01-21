@@ -62,6 +62,43 @@
     const MAX_PICK_HYPERLOOP = 203;
     const MAX_PICK_STARSHIP = 203;
     const MAX_PICK_WARPGATE = 753;
+
+/*
+
+"laptop"
+"battlestation"
+"server"
+"supercomputer"
+"datacentre"
+"quantumCluster"
+"fusionReactor"
+"summoningCircle"
+"replicator"
+"valveCorporation"
+"cursor"
+"hammer"
+"forge"
+"workshop"
+"factory"
+"recyclingCentre"
+"steam"
+"salesRep"
+"tradingPost"
+"bazaar"
+"outletStore"
+"stockExchange"
+"courier"
+"mailTruck"
+"hovercraft"
+"semiTrailer"
+"cargoTrain"
+"cargoShip"
+"cargoPlane"
+"hyperloop"
+"starship"
+"warpGate"
+
+*/
     // ----- SETTINGS END ----- //
 
     function sleep(ms) {
@@ -173,8 +210,8 @@
         // Auto Buy Asset
         if(AUTO_BUY_ASSET) {
             jQuery("div.column-shop div.asset.item").reverse().each(function(){
-                if(jQuery(this).hasClass("disabled") == false) {
-                    console.log("Buy Asset - " + jQuery(this).find("div.item__name").text());
+                if(jQuery(this).hasClass("disabled") == false && jQuery(this).find("div.item__owns").text() < 203) {
+                    console.log("Buy Asset - " + jQuery(this).find("div.item__name").text() + " (" + jQuery(this).find("div.item__owns").text() + ")");
                     jQuery(this).click();
                     return false;
                 }
