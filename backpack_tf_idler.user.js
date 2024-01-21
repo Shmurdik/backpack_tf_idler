@@ -84,7 +84,7 @@
             jQuery("div.picker__card-list > div.card-XV.card").click();
             sleep(3000);
         }
-
+//console.log(eval("MAX_PICK_" + ("WARPGATE").toUpperCase()));
         /*if(jQuery("div.picker__item-list div.warpGate").length) {
             jQuery("div.picker__item-list div.warpGate").click();
         }*/
@@ -152,10 +152,22 @@
 
         // Auto Buy Upgrades
         if(AUTO_BUY_UPGRADE) {
-            if(jQuery("div.column-shop div.upgrade.item").length && jQuery("div.column-shop div.upgrade.item").hasClass("disabled") == false) {
-                console.log("Buy Upgrade - " + jQuery("div.column-shop div.upgrade.item > div.item__left > div.item__icon").children("div").attr("class").split(/\s+/)[0]);
-                jQuery("div.column-shop div.upgrade.item").click();
-            }
+            //console.log("???Buy Upgrade - " + jQuery("div.column-shop div.upgrade.item > div.item__left > div.item__icon > div").attr("class").split(/\s+/)[0]);
+            //console.log(jQuery("div.column-shop div.upgrade.item").first().attr("class"));
+            //console.log(jQuery("div.column-shop div.upgrade.item").first().hasClass("disabled"));
+            //console.log(jQuery("div.column-shop div.upgrade.item").first().attr("class").includes("disabled"));
+            jQuery("div.column-shop div.upgrade.item").each(function(){
+                if(!jQuery(this).hasClass("disabled")) {
+                    console.log("Buy Upgrade - " + jQuery(this).find("> div.item__left > div.item__icon > div").attr("class").split(/\s+/)[0]);
+                    //console.log("Buy Upgrade - " + jQuery(this).children("div.item__left > div.item__icon > div").attr("class").split(/\s+/)[0]);
+                    jQuery(this).click();
+                    return false;
+                }
+            });
+            //if(jQuery("div.column-shop div.upgrade.item").length && jQuery("div.column-shop div.upgrade.item").hasClass("disabled") == false) {
+              //  console.log("Buy Upgrade - " + jQuery("div.column-shop div.upgrade.item > div.item__left > div.item__icon > div").attr("class").split(/\s+/)[0]);
+                //jQuery("div.column-shop div.upgrade.item").click();
+            //}
         }
 
         // Auto Buy Asset
