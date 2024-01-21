@@ -26,6 +26,8 @@
     // ----- SETTINGS BEGIN ----- //
     const AUTO_ENTER_MATCH = 0;
     const AUTO_BUY_ASSET = 1;
+    const AUTO_BUY_UPGRADE = 1;
+    const AUTO_DRAW_TAROT = 1;
     const DEFAULT_PICK_ASSET = "warpGate";
 
     // Idle
@@ -150,9 +152,11 @@
             }
         }
 
-        // Buy Upgrades
-        if(jQuery("div.column-shop div.upgrade.item").length) {
-            jQuery("div.column-shop div.upgrade.item").click();
+        // Auto Buy Upgrades
+        if(AUTO_BUY_UPGRADE) {
+            if(jQuery("div.column-shop div.upgrade.item").length) {
+                jQuery("div.column-shop div.upgrade.item").click();
+            }
         }
 
         // Auto Buy Asset
@@ -166,7 +170,7 @@
         }
 
         // Get Tarot Cards and play TF match
-        if(jQuery(".tarot.tarot-draw-ready.tab").length) {
+        if(AUTO_DRAW_TAROT && jQuery(".tarot.tarot-draw-ready.tab").length) {
             jQuery(".tarot.tarot-draw-ready.tab").click();
             sleep(1000);
             if(jQuery(".btn-draw-card").length && jQuery(".btn-draw-card").hasClass("disabled") == false) {
@@ -175,7 +179,7 @@
                 jQuery(".btn-draw-card").click();
             }
         }
-        else if(jQuery(".fight.team-idle.tab").length && AUTO_ENTER_MATCH) {
+        else if(AUTO_ENTER_MATCH && jQuery(".fight.team-idle.tab").length) {
             jQuery(".fight.team-idle.tab").click();
             sleep(1000);
             if(jQuery("button.btn-forfeit").length && jQuery("button.btn-forfeit").text() == "Back to Team Management") {
