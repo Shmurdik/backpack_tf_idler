@@ -93,7 +93,7 @@
         }*/
 
         // Chuse Free Asset
-        if(jQuery("div.picker__item-list div.warpGate").length) {
+        if(jQuery("div.picker__item-list div.laptop").length) {
             //alert("1");
             var pickedupAsset = false;
             jQuery("div.column-shop div.item__owns").each(function(){
