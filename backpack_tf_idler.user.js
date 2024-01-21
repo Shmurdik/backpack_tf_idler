@@ -23,14 +23,30 @@
 //<button data-v-20ff1bd9="" class="btn-forfeit">Back to Team Management</button>
 //<div data-v-0bd90c02="" class="btn-mission__title">Enter Match</div>
 
+    // ----- SETTINGS BEGIN ----- //
     const AUTO_ENTER_MATCH = 0;
+    const AUTO_BUY_ASSET = 1;
     const DEFAULT_PICK_ASSET = "warpGate";
 
     // Idle
     const MAX_PICK_LAPTOP = 203;
+    const MAX_PICK_BATTLESTATION = 203;
+    const MAX_PICK_SERVER = 203;
+    const MAX_PICK_SUPERCOMPUTER = 203;
+    const MAX_PICK_DATACENTRE = 203;
+    const MAX_PICK_QUANTUMCLUSTER = 203;
+    const MAX_PICK_FUSIONREACTOR = 203;
+    const MAX_PICK_SUMMONINGCIRCLE = 203;
+    const MAX_PICK_REPLICATOR = 203;
+    const MAX_PICK_VALVECORPORATION = 753;
 
     // Craft
     const MAX_PICK_CURSOR = 203;
+    const MAX_PICK_HAMMER = 203;
+    const MAX_PICK_FORGE = 203;
+    const MAX_PICK_WORKSHOP = 203;
+    const MAX_PICK_FACTORY = 203;
+    const MAX_PICK_RECYCLINGCENTRE = 203;
 
     // Trade
     const MAX_PICK_STEAM = 203;
@@ -38,7 +54,7 @@
     const MAX_PICK_TRADINGPOST = 203;
     const MAX_PICK_BAZAAR = 203;
     const MAX_PICK_OUTLETSTORE = 203;
-    const MAX_PICK_STOCKEXCHANGE = 203;
+    const MAX_PICK_STOCKEXCHANGE = 523;
 
     // Logistics
     const MAX_PICK_COURIER = 203;
@@ -50,7 +66,8 @@
     const MAX_PICK_CARGOPLANE = 203;
     const MAX_PICK_HYPERLOOP = 203;
     const MAX_PICK_STARSHIP = 203;
-    const MAX_PICK_WARPGATE = 303;
+    const MAX_PICK_WARPGATE = 753;
+    // ----- SETTINGS END ----- //
 
     function sleep(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));
@@ -61,6 +78,7 @@
         return false;
     }
 
+    jQuery.fn.reverse = [].reverse;
 
     setInterval(function(){
         if(jQuery("div.picker__card-list > div.card-XV.card").length) {
@@ -108,6 +126,21 @@
                 else if(pickAsset("tradingPost", MAX_PICK_TRADINGPOST)) {pickedupAsset = true;}
                 else if(pickAsset("salesRep", MAX_PICK_SALESREP)) {pickedupAsset = true;}
                 else if(pickAsset("steam", MAX_PICK_STEAM)) {pickedupAsset = true;}
+                else if(pickAsset("recyclingCentre", MAX_PICK_RECYCLINGCENTRE)) {pickedupAsset = true;}
+                else if(pickAsset("factory", MAX_PICK_FACTORY)) {pickedupAsset = true;}
+                else if(pickAsset("workshop", MAX_PICK_WORKSHOP)) {pickedupAsset = true;}
+                else if(pickAsset("forge", MAX_PICK_FORGE)) {pickedupAsset = true;}
+                else if(pickAsset("hammer", MAX_PICK_HAMMER)) {pickedupAsset = true;}
+                else if(pickAsset("cursor", MAX_PICK_CURSOR)) {pickedupAsset = true;}
+                else if(pickAsset("valveCorporation", MAX_PICK_VALVECORPORATION)) {pickedupAsset = true;}
+                else if(pickAsset("replicator", MAX_PICK_REPLICATOR)) {pickedupAsset = true;}
+                else if(pickAsset("summoningCircle", MAX_PICK_SUMMONINGCIRCLE)) {pickedupAsset = true;}
+                else if(pickAsset("fusionReactor", MAX_PICK_FUSIONREACTOR)) {pickedupAsset = true;}
+                else if(pickAsset("quantumCluster", MAX_PICK_QUANTUMCLUSTER)) {pickedupAsset = true;}
+                else if(pickAsset("datacentre", MAX_PICK_DATACENTRE)) {pickedupAsset = true;}
+                else if(pickAsset("supercomputer", MAX_PICK_SUPERCOMPUTER)) {pickedupAsset = true;}
+                else if(pickAsset("server", MAX_PICK_SERVER)) {pickedupAsset = true;}
+                else if(pickAsset("battlestation", MAX_PICK_BATTLESTATION)) {pickedupAsset = true;}
                 else if(pickAsset("laptop", MAX_PICK_LAPTOP)) {pickedupAsset = true;}
             }
 
@@ -120,6 +153,16 @@
         // Buy Upgrades
         if(jQuery("div.column-shop div.upgrade.item").length) {
             jQuery("div.column-shop div.upgrade.item").click();
+        }
+
+        // Auto Buy Asset
+        if(AUTO_BUY_ASSET) {
+            jQuery("div.column-shop div.asset.item").reverse().each(function(){
+                if(jQuery(this).hasClass("disabled") == false) {
+                    jQuery(this).click();
+                    return false;
+                }
+            });
         }
 
         // Get Tarot Cards and play TF match
