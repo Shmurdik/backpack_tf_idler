@@ -22,6 +22,7 @@
     const AUTO_BUY_UPGRADE = 1;
     const AUTO_DRAW_TAROT = 1;
     const DEFAULT_PICK_ASSET = "warpGate";
+    const MAX_BUY_EACH_ASSETS = 203;
 
     // Idle
     const MAX_PICK_LAPTOP = 203;
@@ -106,8 +107,10 @@
     }
 
     function pickAsset(assetName, maxValue) {
-        if(jQuery("div.picker__item-list div." + assetName).length && jQuery("div.column-shop div." + assetName).parent().parent().parent().children(".item__owns").text() < maxValue) {
-            console.log("Pick Asset - " + assetName + "(" + maxValue + ")");
+        var currentValue = jQuery("div.column-shop div." + assetName).parent().parent().parent().find("div.item__owns").text();
+        console.log("pickAsset item_owns = " + currentValue);
+        if(jQuery("div.picker__item-list div." + assetName).length && currentValue < maxValue) {
+            console.log("Pick Asset - " + assetName + "(" + currentValue + "/" + maxValue + ")");
             jQuery("div.picker__item-list div." + assetName).click();
             return true;
         }
@@ -188,6 +191,7 @@
         }
 
         // Auto Buy Upgrades
+        var noMoreUpgrades = false; // if false - no more upgrades
         if(AUTO_BUY_UPGRADE) {
             //console.log("???Buy Upgrade - " + jQuery("div.column-shop div.upgrade.item > div.item__left > div.item__icon > div").attr("class").split(/\s+/)[0]);
             //console.log(jQuery("div.column-shop div.upgrade.item").first().attr("class"));
@@ -210,7 +214,7 @@
         // Auto Buy Asset
         if(AUTO_BUY_ASSET) {
             jQuery("div.column-shop div.asset.item").reverse().each(function(){
-                if(jQuery(this).hasClass("disabled") == false && jQuery(this).find("div.item__owns").text() < 203) {
+                if(jQuery(this).hasClass("disabled") == false && jQuery(this).find("div.item__owns").text() < MAX_BUY_EACH_ASSETS) {
                     console.log("Buy Asset - " + jQuery(this).find("div.item__name").text() + " (" + jQuery(this).find("div.item__owns").text() + ")");
                     jQuery(this).click();
                     return false;
