@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         backpack_tf_idler
 // @namespace    https://github.com/Shmurdik
-// @version      2024-01-28
+// @version      2024-01-22
 // @description  description
 // @author       Shmurdik
 // @match        https://idler.backpack.tf/
@@ -123,23 +123,13 @@
             jQuery("div.picker__card-list > div.card-XV.card").click();
             sleep(3000);
         }
-//console.log(eval("MAX_PICK_" + ("WARPGATE").toUpperCase()));
-        /*if(jQuery("div.picker__item-list div.warpGate").length) {
-            jQuery("div.picker__item-list div.warpGate").click();
-        }*/
 
         // Chuse Free Asset
         if(jQuery("div.picker__item-list div.laptop").length) {
-            //alert("1");
             var pickedupAsset = false;
             jQuery("div.column-shop div.item__owns").each(function(){
-                //alert("Q"+jQuery(this).text()+"Q");
                 if(jQuery(this).text() < MAX_PICK_EACH_ASSETS) {
-                    //alert(jQuery(this).parent().parent().children(".item__left").children(".item__icon").children("div").attr("class").split(/\s+/)[0]);
-                    //return false;
-                    //alert(jQuery(this).parent().parent().children(".item__icon").children().attr("class"));
                     var assetName = jQuery(this).parent().parent().children(".item__left").children(".item__icon").children("div").attr("class").split(/\s+/)[0];
-                    //alert(assetName + ": " + jQuery(this).text());
                     console.log("Pick 101 Asset - " + assetName + "(" + jQuery(this).text() + "/" + MAX_PICK_EACH_ASSETS + ")");
                     jQuery("div.picker__item-list div." + assetName).click();
                     pickedupAsset = true;
@@ -192,22 +182,13 @@
         // Auto Buy Upgrades
         var noMoreUpgrades = false; // if false - no more upgrades
         if(AUTO_BUY_UPGRADE) {
-            //console.log("???Buy Upgrade - " + jQuery("div.column-shop div.upgrade.item > div.item__left > div.item__icon > div").attr("class").split(/\s+/)[0]);
-            //console.log(jQuery("div.column-shop div.upgrade.item").first().attr("class"));
-            //console.log(jQuery("div.column-shop div.upgrade.item").first().hasClass("disabled"));
-            //console.log(jQuery("div.column-shop div.upgrade.item").first().attr("class").includes("disabled"));
             jQuery("div.column-shop div.upgrade.item").each(function(){
                 if(!jQuery(this).hasClass("disabled")) {
                     console.log("Buy Upgrade - " + jQuery(this).find("> div.item__left > div.item__icon > div").attr("class").split(/\s+/)[0]);
-                    //console.log("Buy Upgrade - " + jQuery(this).children("div.item__left > div.item__icon > div").attr("class").split(/\s+/)[0]);
                     jQuery(this).click();
                     return false;
                 }
             });
-            //if(jQuery("div.column-shop div.upgrade.item").length && jQuery("div.column-shop div.upgrade.item").hasClass("disabled") == false) {
-              //  console.log("Buy Upgrade - " + jQuery("div.column-shop div.upgrade.item > div.item__left > div.item__icon > div").attr("class").split(/\s+/)[0]);
-                //jQuery("div.column-shop div.upgrade.item").click();
-            //}
         }
 
         // Auto Buy Asset
@@ -227,8 +208,6 @@
             jQuery(".tarot.tarot-draw-ready.tab").click();
             sleep(1000);
             if(jQuery(".btn-draw-card").length && jQuery(".btn-draw-card").hasClass("disabled") == false) {
-                //alert(jQuery(".btn-draw-card").attr("disabled"));
-                //alert(jQuery(".btn-draw-card").hasClass("disabled"));
                 console.log("Get Tarot Card");
                 jQuery(".btn-draw-card").click();
             }
