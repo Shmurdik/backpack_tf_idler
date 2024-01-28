@@ -2,7 +2,7 @@
 
 Written just for fun.
 
-Auto draw Tarot.
-Auto buy Assets and Upgrades.
+Auto draw Tarot.  
+Auto buy Assets and Upgrades.  
 
 ![](https://boosty.to/shmurdik)
