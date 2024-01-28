@@ -1,9 +1,7 @@
 // ==UserScript==
 // @name         backpack_tf_idler
 // @namespace    https://github.com/Shmurdik
-// @version      2024-01-22
-// @downloadURL  https://github.com/Shmurdik/backpack_tf_idler/raw/main/backpack_tf_idler.user.js
-// @updateURL	 https://github.com/Shmurdik/backpack_tf_idler/raw/main/backpack_tf_idler.user.js
+// @version      2024-01-28
 // @description  description
 // @author       Shmurdik
 // @match        https://idler.backpack.tf/
