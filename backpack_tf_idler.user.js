@@ -23,6 +23,7 @@
     const AUTO_DRAW_TAROT = 1;
     const DEFAULT_PICK_ASSET = "warpGate";
     const MAX_BUY_EACH_ASSETS = 203;
+    const MAX_PICK_EACH_ASSETS = 101;
 
     // Idle
     const MAX_PICK_LAPTOP = 203;
@@ -65,7 +66,7 @@
     const MAX_PICK_WARPGATE = 753;
 
 /*
-1
+
 "laptop"
 "battlestation"
 "server"
@@ -108,7 +109,7 @@
 
     function pickAsset(assetName, maxValue) {
         var currentValue = jQuery("div.column-shop div." + assetName).parent().parent().parent().find("div.item__owns").text();
-        console.log("pickAsset item_owns = " + currentValue);
+        //console.log("pickAsset item_owns = " + currentValue);
         if(jQuery("div.picker__item-list div." + assetName).length && currentValue < maxValue) {
             console.log("Pick Asset - " + assetName + "(" + currentValue + "/" + maxValue + ")");
             jQuery("div.picker__item-list div." + assetName).click();
@@ -135,13 +136,13 @@
             var pickedupAsset = false;
             jQuery("div.column-shop div.item__owns").each(function(){
                 //alert("Q"+jQuery(this).text()+"Q");
-                if(jQuery(this).text() < 101) {
+                if(jQuery(this).text() < MAX_PICK_EACH_ASSETS) {
                     //alert(jQuery(this).parent().parent().children(".item__left").children(".item__icon").children("div").attr("class").split(/\s+/)[0]);
                     //return false;
                     //alert(jQuery(this).parent().parent().children(".item__icon").children().attr("class"));
                     var assetName = jQuery(this).parent().parent().children(".item__left").children(".item__icon").children("div").attr("class").split(/\s+/)[0];
                     //alert(assetName + ": " + jQuery(this).text());
-                    console.log("Pick 101 Asset - " + assetName + "(" + jQuery(this).text() + ")");
+                    console.log("Pick 101 Asset - " + assetName + "(" + jQuery(this).text() + "/" + MAX_PICK_EACH_ASSETS + ")");
                     jQuery("div.picker__item-list div." + assetName).click();
                     pickedupAsset = true;
                     return false;
