@@ -1,2 +1,2 @@
 # backpack_tf_idler
-description
+Written just for fun.
